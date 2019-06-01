@@ -1,0 +1,1043 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="_Service_Request_Form_Word_Document_Check_Boxes" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="o_Str_EmailAddress" Type="OutArgument(x:String)" />
+    <x:Property Name="o_Str_AccessMeditech" Type="OutArgument(x:String)" />
+    <x:Property Name="o_Str_AccessGeneral" Type="OutArgument(x:String)" />
+    <x:Property Name="o_Str_AccessEmail" Type="OutArgument(x:String)" />
+    <x:Property Name="o_FirstName" Type="OutArgument(x:String)" />
+    <x:Property Name="o_Str_LastName" Type="OutArgument(x:String)" />
+    <x:Property Name="o_Str_Fullname" Type="OutArgument(x:String)" />
+    <x:Property Name="in_Str_ItFormRequestDoc" Type="InArgument(x:String)" />
+    <x:Property Name="o_Str_DesktopService" Type="OutArgument(x:String)" />
+    <x:Property Name="o_Str_MessagingService" Type="OutArgument(x:String)" />
+    <x:Property Name="o_Str_ApplicationService" Type="OutArgument(x:String)" />
+    <x:Property Name="o_Str_IntranetServices" Type="OutArgument(x:String)" />
+    <x:Property Name="o_StrCustomerReport" Type="OutArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>618.4,3486.4</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Word</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.CV</AssemblyReference>
+      <AssemblyReference>UiPath.IntelligentOCR</AssemblyReference>
+      <AssemblyReference>UiPath.PDF</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Service Request Form Word Document Check Boxes " sap:VirtualizedContainerService.HintSize="336.8,1892.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:Int32" Name="Int_Count_Hospitals" />
+      <Variable x:TypeArguments="x:String" Name="Str_HospitalList" />
+      <Variable x:TypeArguments="x:String" Name="Str_GeneralNetwkChkd" />
+      <Variable x:TypeArguments="x:String" Name="Str_GeneralAcc_NewChk" />
+      <Variable x:TypeArguments="x:String" Name="Str_GeneralAcc_Modify" />
+      <Variable x:TypeArguments="x:String" Name="Str_MeditechAccess" />
+      <Variable x:TypeArguments="x:String" Name="Str_MeditechNewChkd" />
+      <Variable x:TypeArguments="x:String" Name="Str_MeditechModifyChkd" />
+      <Variable x:TypeArguments="x:String" Name="Str_AccessEmail" />
+      <Variable x:TypeArguments="x:String" Name="Str_AccessEmail_New" />
+      <Variable x:TypeArguments="x:String" Name="Str_AccessEmail_Modify" />
+      <Variable x:TypeArguments="x:String" Name="Str_Removal_GeneralChk" />
+      <Variable x:TypeArguments="x:String" Name="Str_Removal_Gen_Disable" />
+      <Variable x:TypeArguments="x:String" Name="Str_Removal_Gen_Delete" />
+      <Variable x:TypeArguments="x:String" Name="Str_RemovalAccess_Meditech" />
+      <Variable x:TypeArguments="x:String" Name="Str_EmailAccessRemoval" />
+      <Variable x:TypeArguments="x:Boolean" Name="B_SecurityChk" />
+      <Variable x:TypeArguments="x:String" Name="Str_AccessRemovalTxt" />
+      <Variable x:TypeArguments="x:String" Name="Str_HospitalName" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="314.4,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Starting&quot;]" />
+    <Assign DisplayName="Assign-Access Generel" sap:VirtualizedContainerService.HintSize="314.4,60" sap2010:WorkflowViewState.IdRef="Assign_39">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[o_Str_AccessGeneral]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[nothing]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign DisplayName="Assign-Access Meditech" sap:VirtualizedContainerService.HintSize="314.4,60" sap2010:WorkflowViewState.IdRef="Assign_40">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[o_Str_AccessMeditech]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[nothing]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign DisplayName="Assign-Access Email" sap:VirtualizedContainerService.HintSize="314.4,60" sap2010:WorkflowViewState.IdRef="Assign_41">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[o_Str_AccessEmail]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[nothing]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Sequence DisplayName="Word Document Validation And Extraction Of Data" sap:VirtualizedContainerService.HintSize="314.4,52.8" sap2010:WorkflowViewState.IdRef="Sequence_19">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:Boolean" Name="B_ServiceFormExist" />
+        <Variable x:TypeArguments="x:String" Name="Str_HospitalName" />
+        <Variable x:TypeArguments="x:String" Name="Str_Security1" />
+        <Variable x:TypeArguments="x:String" Name="Str_Security2" />
+        <Variable x:TypeArguments="x:String" Name="Str_Security3" />
+        <Variable x:TypeArguments="x:String" Name="Str_Security4" />
+        <Variable x:TypeArguments="x:String" Name="Str_Security5" />
+        <Variable x:TypeArguments="x:String" Name="Str_Security6" />
+        <Variable x:TypeArguments="s:String[]" Name="Str_arSecurityQuestions" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <Assign DisplayName="Assign-Full Name" sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_21">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[o_Str_Fullname]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[in_Str_ItFormRequestDoc.Substring(in_Str_ItFormRequestDoc.IndexOf("Full name")+"Full name".Length).Split(environment.NewLine.ToCharArray)(0)]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_22">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[Str_Security1]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String" xml:space="preserve">[in_Str_ItFormRequestDoc.Substring(in_Str_ItFormRequestDoc.IndexOf("(MM/DD  year is not required)=")+"(MM/DD  year is not required)=".Length).Split(" ".ToCharArray)(0)]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign DisplayName="Assign-Email Address" sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_23">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[o_Str_EmailAddress]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[in_Str_ItFormRequestDoc.Substring(in_Str_ItFormRequestDoc.IndexOf("Email Address ")+"Email Address ".Length).Split(environment.NewLine.ToCharArray)(0)]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_24">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[Str_Security2]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[in_Str_ItFormRequestDoc.Substring(in_Str_ItFormRequestDoc.IndexOf("Last 4 digits of social security#=")+"Last 4 digits of social security#=".Length).Split(" ".ToCharArray)(0)]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_25">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[Str_Security3]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[in_Str_ItFormRequestDoc.Substring(in_Str_ItFormRequestDoc.IndexOf("High School Name=")+"High School Name=".Length).Split(" ".ToCharArray)(0)]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_26">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[Str_Security4]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[in_Str_ItFormRequestDoc.Substring(in_Str_ItFormRequestDoc.IndexOf("Pet’s Name=")+"Pet’s Name=".Length).Split(" ".ToCharArray)(0)]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_27">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[Str_Security5]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[in_Str_ItFormRequestDoc.Substring(in_Str_ItFormRequestDoc.IndexOf("City Born=")+"City Born=".Length).Split(" ".ToCharArray)(0)]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_28">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[Str_Security6]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[in_Str_ItFormRequestDoc.Substring(in_Str_ItFormRequestDoc.IndexOf("Father’s middle name=")+"Father’s middle name=".Length).Split(environment.NewLine.ToCharArray)(0)]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign DisplayName="Assign- Security Questions" sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_29">
+        <Assign.To>
+          <OutArgument x:TypeArguments="s:String[]">[Str_arSecurityQuestions]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="s:String[]">[{Str_Security1,Str_Security2,Str_Security3,Str_Security4,Str_Security5,Str_Security6}]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign DisplayName="Assign- Security Check" sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_30">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:Boolean">[B_SecurityChk]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+        </Assign.Value>
+      </Assign>
+      <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each- Security Questions" sap:VirtualizedContainerService.HintSize="243.2,52.8" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[Str_arSecurityQuestions]">
+        <ui:ForEach.Body>
+          <ActivityAction x:TypeArguments="x:String">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="x:String" Name="item" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="486.4,521.6" sap2010:WorkflowViewState.IdRef="Sequence_18">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If Condition="[not string.IsNullOrWhiteSpace(item)]" DisplayName="If- Security question is not empty" sap:VirtualizedContainerService.HintSize="464,396.8" sap2010:WorkflowViewState.IdRef="If_18">
+                <If.Then>
+                  <Sequence sap:VirtualizedContainerService.HintSize="265.6,247.2" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <Assign DisplayName="Assign- Security Check" sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_31">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Boolean">[B_SecurityChk]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <ui:Break sap:VirtualizedContainerService.HintSize="243.2,22.4" sap2010:WorkflowViewState.IdRef="Break_1" />
+                  </Sequence>
+                </If.Then>
+              </If>
+            </Sequence>
+          </ActivityAction>
+        </ui:ForEach.Body>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:ForEach>
+      <If Condition="[B_SecurityChk]" DisplayName="If-Security Question Answered atleast one" sap:VirtualizedContainerService.HintSize="243.2,52.8" sap2010:WorkflowViewState.IdRef="If_19">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <If.Else>
+          <Throw Exception="[new businessruleexception(&quot;No Security Questions Was Answred &quot;)]" sap:VirtualizedContainerService.HintSize="200,22.4" sap2010:WorkflowViewState.IdRef="Throw_8" />
+        </If.Else>
+      </If>
+      <Assign sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_34">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[Str_AccessRemovalTxt]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String" xml:space="preserve">[in_Str_ItFormRequestDoc.Substring(in_Str_ItFormRequestDoc.IndexOf("Access Removal Services   to remove access to applications and systems")+"Access Removal Services   to remove access to applications and systems".Length)]</InArgument>
+        </Assign.Value>
+      </Assign>
+    </Sequence>
+    <Assign DisplayName="Assign-Hospital Name String" sap:VirtualizedContainerService.HintSize="314.4,60" sap2010:WorkflowViewState.IdRef="Assign_18">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[Str_HospitalList]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[in_Str_ItFormRequestDoc.Substring(in_Str_ItFormRequestDoc.IndexOf("Hospital")+"Hospital".Length).Split(environment.NewLine.ToCharArray)(0)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign DisplayName="Assign-Count Of Hospital Checked" sap:VirtualizedContainerService.HintSize="314.4,60" sap2010:WorkflowViewState.IdRef="Assign_19">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:Int32">[Int_Count_Hospitals]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:Int32">[system.Text.RegularExpressions.Regex.Matches(Str_HospitalList,"(1\s+[a-zA-Z]+)").Count]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <If Condition="[Int_Count_Hospitals.Equals(1)]" DisplayName="If-Count Of Hospital Checked More Than One " sap:VirtualizedContainerService.HintSize="314.4,52.8" sap2010:WorkflowViewState.IdRef="If_16">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If.Then>
+        <Sequence sap:VirtualizedContainerService.HintSize="265.6,287.2" sap2010:WorkflowViewState.IdRef="Sequence_25">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Assign sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_62">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[Str_HospitalName]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[system.Text.RegularExpressions.Regex.Match(Str_HospitalList,"(1\s+[a-zA-Z]+)").Value.Replace("1"," ")]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="243.2,62.4" sap2010:WorkflowViewState.IdRef="WriteLine_16" Text="[system.Text.RegularExpressions.Regex.Match(Str_HospitalList,&quot;(1\s+[a-zA-Z]+)&quot;).Value]" />
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Throw Exception="[new businessruleexception(&quot;Hospitals Got Checked More Than One or Zero&quot;)]" sap:VirtualizedContainerService.HintSize="200,22.4" sap2010:WorkflowViewState.IdRef="Throw_6" />
+      </If.Else>
+    </If>
+    <Assign DisplayName="Assign-Access General Network Checked " sap:VirtualizedContainerService.HintSize="314.4,60" sap2010:WorkflowViewState.IdRef="Assign_59">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[Str_GeneralNetwkChkd]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[in_Str_ItFormRequestDoc.Substring(in_Str_ItFormRequestDoc.IndexOf("Employee ID*:")+"Employee ID*:".Length).Split(environment.NewLine.ToCharArray)(15)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign DisplayName="Assign-Access Meditech" sap:VirtualizedContainerService.HintSize="314.4,60" sap2010:WorkflowViewState.IdRef="Assign_60">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[Str_MeditechAccess]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[in_Str_ItFormRequestDoc.Substring(in_Str_ItFormRequestDoc.IndexOf("only for medical staff and nursing")+"only for medical staff and nursing".Length).Split(environment.NewLine.ToCharArray)(2)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign DisplayName="Assign-Access Email" sap:VirtualizedContainerService.HintSize="314.4,60" sap2010:WorkflowViewState.IdRef="Assign_61">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[Str_AccessEmail]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[in_Str_ItFormRequestDoc.Substring(in_Str_ItFormRequestDoc.IndexOf("Staffing and Scheduling Only?")+"Staffing and Scheduling Only?".Length).Split(environment.NewLine.ToCharArray)(9)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <If Condition="[Str_GeneralNetwkChkd.Contains(&quot;1&quot;) or Str_MeditechAccess.Contains(&quot;1&quot;) or Str_AccessEmail.Contains(&quot;1&quot;)]" DisplayName="If Access Request Got Checked " sap:VirtualizedContainerService.HintSize="314.4,52.8" sap2010:WorkflowViewState.IdRef="If_23">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If.Then>
+        <Sequence DisplayName="Requested For Modify Or New" sap:VirtualizedContainerService.HintSize="928,1468.8" sap2010:WorkflowViewState.IdRef="Sequence_23">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Assign DisplayName="Assign-General Access LastName" sap:VirtualizedContainerService.HintSize="905.6,60" sap2010:WorkflowViewState.IdRef="Assign_55">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[o_Str_LastName]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[in_Str_ItFormRequestDoc.Substring(in_Str_ItFormRequestDoc.IndexOf("Last Name*")+"Last Name* ".Length).Split(environment.NewLine.ToCharArray)(0)]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign DisplayName="Assign-General Access FirstName" sap:VirtualizedContainerService.HintSize="905.6,60" sap2010:WorkflowViewState.IdRef="Assign_56">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[o_FirstName]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[in_Str_ItFormRequestDoc.Substring(in_Str_ItFormRequestDoc.IndexOf("First Name*")+"First Name*".Length).Split(environment.NewLine.ToCharArray)(0)]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Sequence DisplayName="Access General Network" sap:VirtualizedContainerService.HintSize="905.6,958.4" sap2010:WorkflowViewState.IdRef="Sequence_10">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign DisplayName="Assign-General Access New" sap:VirtualizedContainerService.HintSize="883.2,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[Str_GeneralAcc_NewChk]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[in_Str_ItFormRequestDoc.Substring(in_Str_ItFormRequestDoc.IndexOf("(All users except Nursing and Medical Staff)")+"(All users except Nursing and Medical Staff)".Length).Split(environment.NewLine.ToCharArray)(0)]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign DisplayName="Assign-General Access Modify " sap:VirtualizedContainerService.HintSize="883.2,60" sap2010:WorkflowViewState.IdRef="Assign_5">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[Str_GeneralAcc_Modify]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[in_Str_ItFormRequestDoc.Substring(in_Str_ItFormRequestDoc.IndexOf("Remote Access:")+"Remote Access:".Length).Split(environment.NewLine.ToCharArray)(8)]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <If Condition="[Str_GeneralNetwkChkd.Contains(&quot;1&quot;)]" DisplayName="If-General network Access Got Checked" sap:VirtualizedContainerService.HintSize="883.2,633.6" sap2010:WorkflowViewState.IdRef="If_2">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="758.4,484" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <If Condition="[Str_GeneralAcc_NewChk.Contains(&quot;1&quot;)]" DisplayName="If-General network New Got Checked" sap:VirtualizedContainerService.HintSize="736,359.2" sap2010:WorkflowViewState.IdRef="If_4">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If.Then>
+                      <Assign DisplayName="Assign-General New Access Checked" sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_45">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:String">[o_Str_AccessGeneral]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:String">["New General"+Str_HospitalName]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </If.Then>
+                    <If.Else>
+                      <If Condition="[Str_GeneralAcc_Modify.Contains(&quot;1&quot;)]" DisplayName="If-General Network  Modify Got Checked" sap:VirtualizedContainerService.HintSize="468,209.6" sap2010:WorkflowViewState.IdRef="If_3">
+                        <If.Then>
+                          <Assign DisplayName="Assign-General Modify Access Checked" sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_46">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[o_Str_AccessGeneral]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">["Modify General"+Str_HospitalName]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                        </If.Then>
+                        <If.Else>
+                          <Throw Exception="[new businessruleexception(&quot;General Access Network Got Check But Modify and New is unchecked&quot;)]" sap:VirtualizedContainerService.HintSize="200,22.4" sap2010:WorkflowViewState.IdRef="Throw_2" />
+                        </If.Else>
+                      </If>
+                    </If.Else>
+                  </If>
+                </Sequence>
+              </If.Then>
+            </If>
+          </Sequence>
+          <Sequence DisplayName="Access Meditech " sap:VirtualizedContainerService.HintSize="905.6,52.8" sap2010:WorkflowViewState.IdRef="Sequence_11">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign DisplayName="Assign-Access Meditech New" sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_7">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[Str_MeditechNewChkd]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[in_Str_ItFormRequestDoc.Substring(in_Str_ItFormRequestDoc.IndexOf("only for medical staff and nursing")+"only for medical staff and nursing".Length).Split(environment.NewLine.ToCharArray)(4)]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign DisplayName="Assign-Access Meditech Modify" sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_8">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[Str_MeditechModifyChkd]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[in_Str_ItFormRequestDoc.Substring(in_Str_ItFormRequestDoc.IndexOf("only for medical staff and nursing")+"only for medical staff and nursing".Length).Split(environment.NewLine.ToCharArray)(18)]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <If Condition="[Str_MeditechAccess.Contains(&quot;1&quot;)]" DisplayName="If-Access Meditech Check" sap:VirtualizedContainerService.HintSize="243.2,52.8" sap2010:WorkflowViewState.IdRef="If_5">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="758.4,484" sap2010:WorkflowViewState.IdRef="Sequence_21">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <If Condition="[Str_MeditechNewChkd.Contains(&quot;1&quot;)]" DisplayName="If-Access Meditech New " sap:VirtualizedContainerService.HintSize="736,359.2" sap2010:WorkflowViewState.IdRef="If_7">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If.Then>
+                      <Assign DisplayName="Assign-Access Meditech New" sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_47">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:String">[o_Str_AccessMeditech]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:String">["New Meditech"+Str_HospitalName]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </If.Then>
+                    <If.Else>
+                      <If Condition="[Str_MeditechModifyChkd.Contains(&quot;1&quot;)]" DisplayName="If-Access Meditech Modify" sap:VirtualizedContainerService.HintSize="468,209.6" sap2010:WorkflowViewState.IdRef="If_6">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <If.Then>
+                          <Assign DisplayName="Assign-Access Meditech Modify" sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_48">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[o_Str_AccessMeditech]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">["Modify Meditech"+Str_HospitalName]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                        </If.Then>
+                        <If.Else>
+                          <Throw Exception="[new businessruleexception(&quot;Access MediTech Got Checked But New and Modify Unchecked &quot;)]" sap:VirtualizedContainerService.HintSize="200,22.4" sap2010:WorkflowViewState.IdRef="Throw_3" />
+                        </If.Else>
+                      </If>
+                    </If.Else>
+                  </If>
+                </Sequence>
+              </If.Then>
+            </If>
+          </Sequence>
+          <Sequence DisplayName="Access Email " sap:VirtualizedContainerService.HintSize="905.6,52.8" sap2010:WorkflowViewState.IdRef="Sequence_12">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign DisplayName="Assign-Access Email new" sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_10">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[Str_AccessEmail_New]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[in_Str_ItFormRequestDoc.Substring(in_Str_ItFormRequestDoc.IndexOf("Staffing and Scheduling Only?")+"Staffing and Scheduling Only?".Length).Split(environment.NewLine.ToCharArray)(11)]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign DisplayName="Assign-Access Email Modify" sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_11">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[Str_AccessEmail_Modify]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[in_Str_ItFormRequestDoc.Substring(in_Str_ItFormRequestDoc.IndexOf("Staffing and Scheduling Only?")+"Staffing and Scheduling Only?".Length).Split(environment.NewLine.ToCharArray)(15)]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <If Condition="[Str_AccessEmail.Contains(&quot;1&quot;)]" DisplayName="If-Email Access Checked" sap:VirtualizedContainerService.HintSize="243.2,52.8" sap2010:WorkflowViewState.IdRef="If_8">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="758.4,484" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <If Condition="[Str_AccessEmail_New.Contains(&quot;1&quot;)]" DisplayName="If-Email Access New " sap:VirtualizedContainerService.HintSize="736,359.2" sap2010:WorkflowViewState.IdRef="If_10">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If.Then>
+                      <Assign DisplayName="Assign-Access New Email" sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_49">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:String">[o_Str_AccessEmail]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:String">["New Email"+Str_HospitalName]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </If.Then>
+                    <If.Else>
+                      <If Condition="[Str_AccessEmail_Modify.Contains(&quot;1&quot;)]" DisplayName="If-Email Access Modify" sap:VirtualizedContainerService.HintSize="468,209.6" sap2010:WorkflowViewState.IdRef="If_9">
+                        <If.Then>
+                          <Assign DisplayName="Assign-Access Modify Email" sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_50">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[o_Str_AccessEmail]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">["Modify Email"+Str_HospitalName]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                        </If.Then>
+                        <If.Else>
+                          <Throw Exception="[new businessruleexception(&quot;Email Got Checked But New and Modify Unchecked&quot;)]" sap:VirtualizedContainerService.HintSize="200,22.4" sap2010:WorkflowViewState.IdRef="Throw_4" />
+                        </If.Else>
+                      </If>
+                    </If.Else>
+                  </If>
+                </Sequence>
+              </If.Then>
+            </If>
+          </Sequence>
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence DisplayName="Requested For Delete" sap:VirtualizedContainerService.HintSize="200,52.8" sap2010:WorkflowViewState.IdRef="Sequence_29">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Assign DisplayName="Assign-General Access LastName" sap:VirtualizedContainerService.HintSize="265.6,60" sap2010:WorkflowViewState.IdRef="Assign_63">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[o_Str_LastName]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[Str_AccessRemovalTxt.Substring(Str_AccessRemovalTxt.IndexOf("Last Name")+"Last Name".Length).Split(environment.NewLine.ToCharArray)(0)]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign DisplayName="Assign-General Access FirstName" sap:VirtualizedContainerService.HintSize="265.6,60" sap2010:WorkflowViewState.IdRef="Assign_64">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[o_FirstName]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[Str_AccessRemovalTxt.Substring(Str_AccessRemovalTxt.IndexOf("First Name")+"First Name".Length).Split(environment.NewLine.ToCharArray)(0)]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Sequence DisplayName="Removal Access General" sap:VirtualizedContainerService.HintSize="265.6,52.8" sap2010:WorkflowViewState.IdRef="Sequence_26">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign DisplayName="Assign-Access Removal General" sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_65">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[Str_Removal_GeneralChk]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String" xml:space="preserve">[in_Str_ItFormRequestDoc.Substring(in_Str_ItFormRequestDoc.IndexOf("Reason for Separation:")+"Reason for Separation:".Length).Split(environment.NewLine.ToCharArray)(5).Split("   ".ToCharArray)(0)]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign DisplayName="Assign-Access Removal General Disable" sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_66">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[Str_Removal_Gen_Disable]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String" xml:space="preserve">[in_Str_ItFormRequestDoc.Substring(in_Str_ItFormRequestDoc.IndexOf("Reason for Separation:")+"Reason for Separation:".Length).Split(environment.NewLine.ToCharArray)(5).Split("   ".ToCharArray)(2)]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign DisplayName="Assign-Access Removal General Delete " sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_67">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[Str_Removal_Gen_Delete]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[in_Str_ItFormRequestDoc.Substring(in_Str_ItFormRequestDoc.IndexOf("Reason for Separation:")+"Reason for Separation:".Length).Split(environment.NewLine.ToCharArray)(7).Split(".".ToCharArray)(2)]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <If Condition="[Str_Removal_GeneralChk.Contains(&quot;1&quot;)]" DisplayName="If-General Removal Chkd" sap:VirtualizedContainerService.HintSize="243.2,52.8" sap2010:WorkflowViewState.IdRef="If_26">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <If Condition="[Str_Removal_Gen_Disable.Contains(&quot;1&quot;)]" DisplayName="If-General Removal Disable" sap:VirtualizedContainerService.HintSize="736,359.2" sap2010:WorkflowViewState.IdRef="If_25">
+                  <If.Then>
+                    <Assign DisplayName="Assign-Removal Genreral-Disable" sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_68">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[o_Str_AccessGeneral]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">["Disable General"+Str_HospitalName]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                  </If.Then>
+                  <If.Else>
+                    <If Condition="[Str_Removal_Gen_Delete.Contains(&quot;1&quot;)]" DisplayName="If-General Removal Delete" sap:VirtualizedContainerService.HintSize="468,209.6" sap2010:WorkflowViewState.IdRef="If_24">
+                      <If.Then>
+                        <Assign DisplayName="Assign-Removal Genreral-Delete" sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_69">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:String">[o_Str_AccessGeneral]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">["Delete General"+Str_HospitalName]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </If.Then>
+                      <If.Else>
+                        <Throw Exception="[new businessruleexception(&quot;Removal General Got Checked but Delete and Disable Unchecked&quot;)]" sap:VirtualizedContainerService.HintSize="200,22.4" sap2010:WorkflowViewState.IdRef="Throw_9" />
+                      </If.Else>
+                    </If>
+                  </If.Else>
+                </If>
+              </If.Then>
+            </If>
+          </Sequence>
+          <Sequence DisplayName="Meditech Removal" sap:VirtualizedContainerService.HintSize="265.6,52.8" sap2010:WorkflowViewState.IdRef="Sequence_27">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign DisplayName="Assign-Removal Access Meditech" sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_70">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[Str_RemovalAccess_Meditech]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[in_Str_ItFormRequestDoc.Substring(in_Str_ItFormRequestDoc.IndexOf("Reason for Separation:")+"Reason for Separation:".Length).Split(environment.NewLine.ToCharArray)(9).Split(" ".ToCharArray)(0)]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <If Condition="[Str_RemovalAccess_Meditech.Contains(&quot;1&quot;)]" DisplayName="If-Removal Meditech Access" sap:VirtualizedContainerService.HintSize="243.2,52.8" sap2010:WorkflowViewState.IdRef="If_27">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Assign DisplayName="Assign-Removal Meditech" sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_71">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[o_Str_AccessMeditech]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">["Delete Meditech"+Str_HospitalName]</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </If.Then>
+            </If>
+          </Sequence>
+          <Sequence DisplayName="Email Access Removal" sap:VirtualizedContainerService.HintSize="265.6,377.6" sap2010:WorkflowViewState.IdRef="Sequence_28">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="x:String" Name="Str_EmailAccess_Disable" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign DisplayName="Assign-Email Access Removal" sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_72">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[Str_EmailAccessRemoval]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[in_Str_ItFormRequestDoc.Substring(in_Str_ItFormRequestDoc.IndexOf("Reason for Separation:")+"Reason for Separation:".Length).Split(environment.NewLine.ToCharArray)(12)]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign DisplayName="Assign-Email Access Disable" sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_73">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[Str_EmailAccess_Disable]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[in_Str_ItFormRequestDoc.Substring(in_Str_ItFormRequestDoc.IndexOf("Reason for Separation:")+"Reason for Separation:".Length).Split(environment.NewLine.ToCharArray)(14)]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <If Condition="[Str_EmailAccessRemoval.Contains(&quot;1&quot;)]" DisplayName="If Email Access Removal Chkd" sap:VirtualizedContainerService.HintSize="243.2,52.8" sap2010:WorkflowViewState.IdRef="If_29">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <If Condition="[Str_EmailAccess_Disable.Contains(&quot;1&quot;)]" DisplayName="If-Email Access Disable Chkd" sap:VirtualizedContainerService.HintSize="468,209.6" sap2010:WorkflowViewState.IdRef="If_28">
+                  <If.Then>
+                    <Assign DisplayName="Assign-Disable Email " sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_74">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[o_Str_AccessEmail]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">["Delete Email"+Str_HospitalName]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                  </If.Then>
+                  <If.Else>
+                    <Throw Exception="[new businessruleexception(&quot;Email Access removal got checked but disable unchecked&quot;)]" sap:VirtualizedContainerService.HintSize="200,22.4" sap2010:WorkflowViewState.IdRef="Throw_10" />
+                  </If.Else>
+                </If>
+              </If.Then>
+            </If>
+          </Sequence>
+        </Sequence>
+      </If.Else>
+    </If>
+    <Sequence DisplayName="Desktop Services" sap:VirtualizedContainerService.HintSize="314.4,52.8" sap2010:WorkflowViewState.IdRef="Sequence_30">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:String" Name="Str_DeskTopServices" />
+        <Variable x:TypeArguments="x:String" Name="Str_DeskTopSummary" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <Assign DisplayName="Assign-DeskTop Services" sap:VirtualizedContainerService.HintSize="464,60" sap2010:WorkflowViewState.IdRef="Assign_75">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[Str_DeskTopServices]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[in_Str_ItFormRequestDoc.Substring(in_Str_ItFormRequestDoc.IndexOf("Desktop Service")+"Desktop Service".Length).Split(environment.NewLine.ToCharArray)(2)]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign DisplayName="Assign-Desktop Summary" sap:VirtualizedContainerService.HintSize="464,60" sap2010:WorkflowViewState.IdRef="Assign_76">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[Str_DeskTopSummary]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[Str_DeskTopServices.Substring(Str_DeskTopServices.IndexOf("Summary:")+"Summary:".Length).Split(environment.NewLine.ToCharArray)(0)]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <If Condition="[Not string.IsNullOrWhiteSpace(Str_DeskTopSummary)]" DisplayName="If- Desktop Summary Contains A Text" sap:VirtualizedContainerService.HintSize="464,209.6" sap2010:WorkflowViewState.IdRef="If_30">
+        <If.Then>
+          <Assign DisplayName="Assign-Desktop Services" sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_77">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[o_Str_DesktopService]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">["Desktop-"+Str_HospitalName]</InArgument>
+            </Assign.Value>
+          </Assign>
+        </If.Then>
+      </If>
+    </Sequence>
+    <Sequence DisplayName="Messaging Services" sap:VirtualizedContainerService.HintSize="314.4,52.8" sap2010:WorkflowViewState.IdRef="Sequence_31">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:String" Name="Str_MessagingServices" />
+        <Variable x:TypeArguments="x:String" Name="Str_MessagingSummary" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <Assign DisplayName="Assign-Messaging Services" sap:VirtualizedContainerService.HintSize="464,60" sap2010:WorkflowViewState.IdRef="Assign_78">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[Str_MessagingServices]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[in_Str_ItFormRequestDoc.Substring(in_Str_ItFormRequestDoc.IndexOf("Messaging")+"Messaging".Length).Split(environment.NewLine.ToCharArray)(2)]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign DisplayName="Assign-Messaging Summary" sap:VirtualizedContainerService.HintSize="464,60" sap2010:WorkflowViewState.IdRef="Assign_79">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[Str_MessagingSummary]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[Str_MessagingServices.Substring(Str_MessagingServices.IndexOf("Summary:")+"Summary:".Length).Split(environment.NewLine.ToCharArray)(0)]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <If Condition="[Not string.IsNullOrWhiteSpace(Str_MessagingSummary)]" DisplayName="If- Messaging Summary Contains A Text" sap:VirtualizedContainerService.HintSize="464,209.6" sap2010:WorkflowViewState.IdRef="If_31">
+        <If.Then>
+          <Assign DisplayName="Assign-Messaging Services" sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_84">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[o_Str_MessagingService]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">["Messaging-"+Str_HospitalName]</InArgument>
+            </Assign.Value>
+          </Assign>
+        </If.Then>
+      </If>
+    </Sequence>
+    <Sequence DisplayName="Application Services" sap:VirtualizedContainerService.HintSize="314.4,52.8" sap2010:WorkflowViewState.IdRef="Sequence_32">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:String" Name="Str_ApplicationServices" />
+        <Variable x:TypeArguments="x:String" Name="Str_ApplicationSummary" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <Assign DisplayName="Assign-Application Services" sap:VirtualizedContainerService.HintSize="464,60" sap2010:WorkflowViewState.IdRef="Assign_80">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[Str_ApplicationServices]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[in_Str_ItFormRequestDoc.Substring(in_Str_ItFormRequestDoc.IndexOf("Application Services for routine requests for your Meditech system")+"Application Services for routine requests for your Meditech system".Length).Split(environment.NewLine.ToCharArray)(2)]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign DisplayName="Assign-Application Summary" sap:VirtualizedContainerService.HintSize="464,60" sap2010:WorkflowViewState.IdRef="Assign_81">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[Str_ApplicationSummary]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[Str_ApplicationServices.Substring(Str_ApplicationServices.IndexOf("Summary:")+"Summary:".Length).Split(environment.NewLine.ToCharArray)(0)]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <If Condition="[Not string.IsNullOrWhiteSpace(Str_ApplicationSummary)]" DisplayName="If- Application Summary Contains A Text" sap:VirtualizedContainerService.HintSize="464,209.6" sap2010:WorkflowViewState.IdRef="If_32">
+        <If.Then>
+          <Assign DisplayName="Assign-Application Services" sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_85">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[o_Str_ApplicationService]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">["Application-"+Str_HospitalName]</InArgument>
+            </Assign.Value>
+          </Assign>
+        </If.Then>
+      </If>
+    </Sequence>
+    <Sequence DisplayName="Intranet Services" sap:VirtualizedContainerService.HintSize="314.4,52.8" sap2010:WorkflowViewState.IdRef="Sequence_33">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:String" Name="Str_IntranetServices" />
+        <Variable x:TypeArguments="x:String" Name="Str_IntranetSummary" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <Assign DisplayName="Assign-Intranet Services" sap:VirtualizedContainerService.HintSize="464,60" sap2010:WorkflowViewState.IdRef="Assign_82">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[Str_IntranetServices]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[in_Str_ItFormRequestDoc.Substring(in_Str_ItFormRequestDoc.IndexOf("Intranet Services requests to modify the hospital intranet")+"Intranet Services requests to modify the hospital intranet".Length).Split(environment.NewLine.ToCharArray)(2)]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign DisplayName="Assign-Intranet Summary" sap:VirtualizedContainerService.HintSize="464,60" sap2010:WorkflowViewState.IdRef="Assign_83">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[Str_IntranetSummary]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[Str_IntranetServices.Substring(Str_IntranetServices.IndexOf("Summary:")+"Summary:".Length).Split(environment.NewLine.ToCharArray)(0)]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <If Condition="[Not string.IsNullOrWhiteSpace(Str_IntranetSummary)]" DisplayName="If- Intranet Summary Contains A Text" sap:VirtualizedContainerService.HintSize="464,209.6" sap2010:WorkflowViewState.IdRef="If_33">
+        <If.Then>
+          <Assign DisplayName="Assign-Intranet Services" sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_86">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[o_Str_IntranetServices]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">["Intranet-"+Str_HospitalName]</InArgument>
+            </Assign.Value>
+          </Assign>
+        </If.Then>
+      </If>
+    </Sequence>
+    <Sequence DisplayName="Customer Report Request" sap:VirtualizedContainerService.HintSize="314.4,52.8" sap2010:WorkflowViewState.IdRef="Sequence_35">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:String" Name="Str_CustomerRevise" />
+        <Variable x:TypeArguments="x:Boolean" Name="B_CustomerReviseChk" />
+        <Variable x:TypeArguments="x:String" Name="Str_CustomerReportRequester" />
+        <Variable x:TypeArguments="x:Boolean" Name="B_CustomerRequester" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <Assign DisplayName="Assign- Customer Report Revise Check" sap:VirtualizedContainerService.HintSize="754.4,60" sap2010:WorkflowViewState.IdRef="Assign_87">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[Str_CustomerRevise]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[in_Str_ItFormRequestDoc.Substring(in_Str_ItFormRequestDoc.IndexOf("Custom Report Request:")+"Custom Report Request:".Length).Split(environment.NewLine.ToCharArray)(2)]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <ui:IsMatch DisplayName="Is Match" sap:VirtualizedContainerService.HintSize="754.4,22.4" sap2010:WorkflowViewState.IdRef="IsMatch_1" Input="[Str_CustomerRevise]" Pattern="^1" RegexOption="IgnoreCase, Compiled" Result="[B_CustomerReviseChk]" />
+      <If Condition="[B_CustomerReviseChk]" DisplayName="If-Customer Report Revise Chkd" sap:VirtualizedContainerService.HintSize="754.4,646.4" sap2010:WorkflowViewState.IdRef="If_35">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <If.Then>
+          <Assign DisplayName="Assign-Customer Revise" sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_88">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[o_StrCustomerReport]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">["Report Revise-"+Str_HospitalName]</InArgument>
+            </Assign.Value>
+          </Assign>
+        </If.Then>
+        <If.Else>
+          <Sequence sap:VirtualizedContainerService.HintSize="486.4,496.8" sap2010:WorkflowViewState.IdRef="Sequence_34">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign DisplayName="Assign-Customer Report Requester" sap:VirtualizedContainerService.HintSize="464,60" sap2010:WorkflowViewState.IdRef="Assign_89">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[Str_CustomerReportRequester]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[in_Str_ItFormRequestDoc.Substring(in_Str_ItFormRequestDoc.IndexOf("or report will the changes be validated against?")+"or report will the changes be validated against?".Length).Split(environment.NewLine.ToCharArray)(3)]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <ui:IsMatch DisplayName="Is Match" sap:VirtualizedContainerService.HintSize="464,22.4" sap2010:WorkflowViewState.IdRef="IsMatch_2" Input="[Str_CustomerReportRequester]" Pattern="^1" RegexOption="IgnoreCase, Compiled" Result="[B_CustomerRequester]" />
+            <If Condition="[B_CustomerRequester]" DisplayName="If-Customer Report New Chkd" sap:VirtualizedContainerService.HintSize="464,209.6" sap2010:WorkflowViewState.IdRef="If_34">
+              <If.Then>
+                <Assign DisplayName="Assign-Customer Revise" sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_90">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[o_StrCustomerReport]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">["Report New-"+Str_HospitalName]</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </If.Then>
+            </If>
+          </Sequence>
+        </If.Else>
+      </If>
+    </Sequence>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="314.4,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Ending&quot;]" />
+  </Sequence>
+</Activity>
